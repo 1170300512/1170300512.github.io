@@ -20,17 +20,19 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="选择有时候比努力更重要">
-<meta property="og:type" content="website">
+  <meta name="description" content="1、字符串查找1234567891011 s.find(s1)         &#x2F;&#x2F;查找s中第一次出现s1的位置，并返回（包括0） s.rfind(s1)        &#x2F;&#x2F;查找s中最后次出现s1的位置，并返回（包括0） s.find_first_of(s1)       &#x2F;&#x2F;查找在s1中任意一个字符在s中第一次出现的位置，并返回（包括0）s.find_last_of(s1)       &#x2F;&#x2F;查找">
+<meta property="og:type" content="article">
 <meta property="og:title" content="CS的个人小站">
-<meta property="og:url" content="http://example.com/archives/index.html">
+<meta property="og:url" content="http://example.com/2022/02/21/%E6%95%99%E7%A8%8B-C-C-%E5%AD%97%E7%AC%A6%E4%B8%B2/index.html">
 <meta property="og:site_name" content="CS的个人小站">
-<meta property="og:description" content="选择有时候比努力更重要">
+<meta property="og:description" content="1、字符串查找1234567891011 s.find(s1)         &#x2F;&#x2F;查找s中第一次出现s1的位置，并返回（包括0） s.rfind(s1)        &#x2F;&#x2F;查找s中最后次出现s1的位置，并返回（包括0） s.find_first_of(s1)       &#x2F;&#x2F;查找在s1中任意一个字符在s中第一次出现的位置，并返回（包括0）s.find_last_of(s1)       &#x2F;&#x2F;查找">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-02-21T01:58:21.982Z">
+<meta property="article:modified_time" content="2022-02-21T02:55:23.032Z">
 <meta property="article:author" content="CS">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/archives/">
+<link rel="canonical" href="http://example.com/2022/02/21/%E6%95%99%E7%A8%8B-C-C-%E5%AD%97%E7%AC%A6%E4%B8%B2/">
 
 
 <script id="page-configurations">
@@ -38,12 +40,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>归档 | CS的个人小站</title>
+  <title> | CS的个人小站</title>
   
 
 
@@ -141,113 +143,80 @@
         <div class="content-wrap">
           
 
-          <div class="content archive">
+          <div class="content post posts-expand">
             
 
+    
   
   
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <span class="collection-header">嗯..! 目前共计 4 篇日志。 继续努力。</span>
-      </div>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/02/21/%E6%95%99%E7%A8%8B-C-C-%E5%AD%97%E7%AC%A6%E4%B8%B2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="CS">
+      <meta itemprop="description" content="选择有时候比努力更重要">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CS的个人小站">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-02-21 09:58:21 / 修改时间：10:55:23" itemprop="dateCreated datePublished" datetime="2022-02-21T09:58:21+08:00">2022-02-21</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <span class="collection-header">2022</span>
+        <h2 id="1、字符串查找"><a href="#1、字符串查找" class="headerlink" title="1、字符串查找"></a>1、字符串查找</h2><figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"> s<span class="selector-class">.find</span>(s1)         <span class="comment">//查找s中第一次出现s1的位置，并返回（包括0）</span></span><br><span class="line"></span><br><span class="line"> s<span class="selector-class">.rfind</span>(s1)        <span class="comment">//查找s中最后次出现s1的位置，并返回（包括0）</span></span><br><span class="line"></span><br><span class="line"> s<span class="selector-class">.find_first_of</span>(s1)       <span class="comment">//查找在s1中任意一个字符在s中第一次出现的位置，并返回（包括0）</span></span><br><span class="line"></span><br><span class="line">s<span class="selector-class">.find_last_of</span>(s1)       <span class="comment">//查找在s1中任意一个字符在s中最后一次出现的位置，并返回（包括0）</span></span><br><span class="line"></span><br><span class="line">s<span class="selector-class">.fin_first_not_of</span>(s1)         <span class="comment">//查找s中第一个不属于s1中的字符的位置，并返回（包括0）</span></span><br><span class="line"></span><br><span class="line">s<span class="selector-class">.fin_last_not_of</span>(s1)         <span class="comment">//查找s中最后一个不属于s1中的字符的位置，并返回（包括0）</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="2、字符串截取"><a href="#2、字符串截取" class="headerlink" title="2、字符串截取"></a>2、字符串截取</h2><figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">s.substr(<span class="keyword">pos</span>, n)    //截取s中从<span class="keyword">pos</span>开始（包括<span class="number">0</span>）的n个字符的子串，并返回</span><br><span class="line"></span><br><span class="line">s.substr(<span class="keyword">pos</span>)        //截取s中从从<span class="keyword">pos</span>开始（包括<span class="number">0</span>）到末尾的所有字符的子串，并返回</span><br></pre></td></tr></table></figure>
+
+<h2 id="3、字符串替换"><a href="#3、字符串替换" class="headerlink" title="3、字符串替换"></a>3、字符串替换</h2><figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s.replace(<span class="keyword">pos</span>, n, s1)     //用s1替换s中从<span class="keyword">pos</span>开始（包括<span class="number">0</span>）的n个字符的子串</span><br></pre></td></tr></table></figure>
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+    
+    
+    
 
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2022-02-21T09:58:21+08:00"
-              content="2022-02-21">
-          02-21
-        </time>
-      </div>
+      <footer class="post-footer">
 
-      <div class="post-title">
-          <a class="post-title-link" href="/2022/02/21/%E6%95%99%E7%A8%8B-C-C-%E5%AD%97%E7%AC%A6%E4%B8%B2/" itemprop="url">
-            <span itemprop="name">未命名</span>
-          </a>
-      </div>
+        
 
-    </header>
-  </article>
-    <div class="collection-year">
-      <span class="collection-header">2020</span>
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/02/21/%E6%95%99%E7%A8%8B-Hexo%E6%95%99%E7%A8%8B-HEXO%E4%B8%BB%E9%A2%98%E4%BC%98%E5%8C%96/" rel="prev" title="HEXO主题优化">
+      <i class="fa fa-chevron-left"></i> HEXO主题优化
+    </a></div>
+      <div class="post-nav-item"></div>
     </div>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-02-21T22:07:08+08:00"
-              content="2020-02-21">
-          02-21
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/02/21/%E6%95%99%E7%A8%8B-Hexo%E6%95%99%E7%A8%8B-HEXO%E4%B8%BB%E9%A2%98%E4%BC%98%E5%8C%96/" itemprop="url">
-            <span itemprop="name">HEXO主题优化</span>
-          </a>
-      </div>
-
-    </header>
+      </footer>
+    
   </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-02-21T00:00:00+08:00"
-              content="2020-02-21">
-          02-21
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/02/21/%E6%95%99%E7%A8%8B-GIT%E6%95%99%E7%A8%8B-GIT%E8%BF%9E%E6%8E%A5%E5%92%8C%E6%8F%90%E4%BA%A4/" itemprop="url">
-            <span itemprop="name">GIT连接与提交</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-02-21T00:00:00+08:00"
-              content="2020-02-21">
-          02-21
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/02/21/%E6%95%99%E7%A8%8B-GIT%E6%95%99%E7%A8%8B-GIT%E5%88%86%E6%94%AF%E6%93%8D%E4%BD%9C/" itemprop="url">
-            <span itemprop="name">GIT分支操作</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-
-    </div>
-  </div>
   
   
-  
-
   
 
 
@@ -300,6 +269,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1%E3%80%81%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%9F%A5%E6%89%BE"><span class="nav-number">1.</span> <span class="nav-text">1、字符串查找</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2%E3%80%81%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%88%AA%E5%8F%96"><span class="nav-number">2.</span> <span class="nav-text">2、字符串截取</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3%E3%80%81%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%9B%BF%E6%8D%A2"><span class="nav-number">3.</span> <span class="nav-text">3、字符串替换</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

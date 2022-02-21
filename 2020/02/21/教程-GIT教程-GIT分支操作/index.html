@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="简介  git有四个工作区域，分别是：工作目录（Workspace）、暂存区（Index&#x2F;Stage）、本地仓库（Repository）、远程仓库（Remote） git branch 查看本地所有分支">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GIT分支操作">
+<meta property="og:url" content="http://example.com/2020/02/21/%E6%95%99%E7%A8%8B-GIT%E6%95%99%E7%A8%8B-GIT%E5%88%86%E6%94%AF%E6%93%8D%E4%BD%9C/index.html">
+<meta property="og:site_name" content="CS的个人小站">
+<meta property="og:description" content="简介  git有四个工作区域，分别是：工作目录（Workspace）、暂存区（Index&#x2F;Stage）、本地仓库（Repository）、远程仓库（Remote） git branch 查看本地所有分支">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/3892288-c37b3ba30a393108.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1200/format/webp">
+<meta property="article:published_time" content="2020-02-20T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-02-21T08:39:40.035Z">
+<meta property="article:author" content="CS">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/3892288-c37b3ba30a393108.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1200/format/webp">
+
+<link rel="canonical" href="http://example.com/2020/02/21/%E6%95%99%E7%A8%8B-GIT%E6%95%99%E7%A8%8B-GIT%E5%88%86%E6%94%AF%E6%93%8D%E4%BD%9C/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>GIT分支操作 | CS的个人小站</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">CS的个人小站</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/02/21/%E6%95%99%E7%A8%8B-GIT%E6%95%99%E7%A8%8B-GIT%E5%88%86%E6%94%AF%E6%93%8D%E4%BD%9C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="CS">
+      <meta itemprop="description" content="选择有时候比努力更重要">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CS的个人小站">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          GIT分支操作
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-02-21 00:00:00" itemprop="dateCreated datePublished" datetime="2020-02-21T00:00:00+08:00">2020-02-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-02-21 16:39:40" itemprop="dateModified" datetime="2022-02-21T16:39:40+08:00">2022-02-21</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/GIT%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">GIT笔记</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>  <code>git</code>有四个工作区域，分别是：工作目录（<code>Workspace</code>）、暂存区（<code>Index/Stage</code>）、本地仓库（<code>Repository</code>）、远程仓库（<code>Remote</code>）</p>
+<p>git branch 查看本地所有分支</p>
+<p>git status 查看当前状态</p>
+<p>git commit 提交</p>
+<p>git branch -a 查看所有的分支</p>
+<p>git branch -r 查看远程所有分支</p>
+<p>git commit -m “init” 提交并且加注释</p>
+<p>git push origin master 将文件给推到服务器上</p>
+<p>git remote show origin 显示远程库origin里的资源</p>
+<p>git push origin master:develop</p>
+<p>git push origin master:hb-dev 将本地库与服务器上的库进行关联</p>
+<p>git checkout –track origin&#x2F;dev 切换到远程dev分支</p>
+<p>git branch -D master develop 删除本地库develop</p>
+<p>git checkout -b dev 建立一个新的本地分支dev</p>
+<p>git merge origin&#x2F;dev 将分支dev与当前分支进行合并</p>
+<p>git checkout dev 切换到本地dev分支</p>
+<p>git remote show 查看远程库</p>
+<p>git add .</p>
+<p>git rm 文件名(包括路径) 从git中删除指定文件</p>
+<p>git clone git:&#x2F;&#x2F;github.com&#x2F;schacon&#x2F;grit.git 从服务器上将代码给拉下来</p>
+<p>git config –list 看所有用户</p>
+<p>git ls-files 看已经被提交的</p>
+<p>git rm [file name] 删除一个文件</p>
+<p>git commit -a 提交当前repos的所有的改变</p>
+<p>git add [file name] 添加一个文件到git index</p>
+<p>git commit -v 当你用－v参数的时候可以看commit的差异</p>
+<p>git commit -m “This is the message describing the commit” 添加commit信息</p>
+<p>git commit -a -a是代表add，把所有的change加到git index里然后再commit</p>
+<p>git commit -a -v 一般提交命令</p>
+<p>git log 看你commit的日志</p>
+<p>git diff 查看尚未暂存的更新</p>
+<p>git rm a.a 移除文件(从暂存区和工作区中删除)</p>
+<p>git rm –cached a.a 移除文件(只从暂存区中删除)</p>
+<p>git commit -m “remove” 移除文件(从Git中删除)</p>
+<p>git rm -f a.a 强行移除修改后文件(从暂存区和工作区中删除)</p>
+<p>git diff –cached 或 $ git diff –staged 查看尚未提交的更新</p>
+<p>git stash push 将文件给push到一个临时空间中</p>
+<p>git stash pop 将文件从临时空间pop下来</p>
+<p>-——————————————————–</p>
+<p>git remote add origin <a href="mailto:&#x67;&#x69;&#x74;&#64;&#x67;&#105;&#116;&#104;&#117;&#98;&#46;&#x63;&#x6f;&#x6d;">&#x67;&#x69;&#x74;&#64;&#x67;&#105;&#116;&#104;&#117;&#98;&#46;&#x63;&#x6f;&#x6d;</a>:username&#x2F;Hello-World.git</p>
+<p>git push origin master 将本地项目给提交到服务器中</p>
+<p>-———————————————————-</p>
+<p>git pull 本地与服务器端同步</p>
+<p>-—————————————————————-</p>
+<p>git push (远程仓库名) (分支名) 将本地分支推送到服务器上去。</p>
+<p>git push origin serverfix:awesomebranch</p>
+<p>-—————————————————————–</p>
+<p>git fetch 相当于是从远程获取最新版本到本地，不会自动merge</p>
+<p>git commit -a -m “log_message” (-a是提交所有改动，-m是加入log信息) 本地修改同步至服务器端 ：</p>
+<p>git branch branch_0.1 master 从主分支master创建branch_0.1分支</p>
+<p>git branch -m branch_0.1 branch_1.0 将branch_0.1重命名为branch_1.0</p>
+<p>git checkout branch_1.0&#x2F;master 切换到branch_1.0&#x2F;master分支</p>
+<p>du -hs</p>
+<p>git branch 删除远程branch</p>
+<p>git push origin :branch_remote_name</p>
+<p>git branch -r -d branch_remote_name</p>
+<p>-———————————————————-</p>
+<p>初始化版本库，并提交到远程服务器端</p>
+<p>mkdir WebApp</p>
+<p>cd WebApp</p>
+<p>git init 本地初始化</p>
+<p>touch README</p>
+<p>git add README 添加文件</p>
+<p>git commit -m ‘first commit’</p>
+<p>git remote add origin <a href="mailto:&#x67;&#105;&#x74;&#64;&#x67;&#x69;&#116;&#104;&#117;&#x62;&#x2e;&#99;&#x6f;&#109;">&#x67;&#105;&#x74;&#64;&#x67;&#x69;&#116;&#104;&#117;&#x62;&#x2e;&#99;&#x6f;&#109;</a>:daixu&#x2F;WebApp.git</p>
+<p>增加一个远程服务器端</p>
+<p>上面的命令会增加URL地址为‘<a href="mailto:&#x67;&#x69;&#116;&#64;&#x67;&#105;&#x74;&#x68;&#117;&#x62;&#x2e;&#99;&#x6f;&#x6d;">&#x67;&#x69;&#116;&#64;&#x67;&#105;&#x74;&#x68;&#117;&#x62;&#x2e;&#99;&#x6f;&#x6d;</a>:daixu&#x2F;WebApp.git’，名称为origin的远程服务器库，以后提交代码的时候只需要使用 origin别名即可</p>
+<p>二、 Git 命令速查表</p>
+<p>1、常用的Git命令</p>
+<p>命令简要说明</p>
+<p>git add添加至暂存区</p>
+<p>git add–interactive交互式添加</p>
+<p>git apply应用补丁</p>
+<p>git am应用邮件格式补丁</p>
+<p>git annotate同义词，等同于 git blame</p>
+<p>git archive文件归档打包</p>
+<p>git bisect二分查找</p>
+<p>git blame文件逐行追溯</p>
+<p>git branch分支管理</p>
+<p>git cat-file版本库对象研究工具</p>
+<p>git checkout检出到工作区、切换或创建分支</p>
+<p>git cherry-pick提交拣选</p>
+<p>git citool图形化提交，相当于 git gui 命令</p>
+<p>git clean清除工作区未跟踪文件</p>
+<p>git clone克隆版本库</p>
+<p>git commit提交</p>
+<p>git config查询和修改配置</p>
+<p>git describe通过里程碑直观地显示提交ID</p>
+<p>git diff差异比较</p>
+<p>git difftool调用图形化差异比较工具</p>
+<p>git fetch获取远程版本库的提交</p>
+<p>git format-patch创建邮件格式的补丁文件。参见 git am 命令</p>
+<p>git grep文件内容搜索定位工具</p>
+<p>git gui基于Tcl&#x2F;Tk的图形化工具，侧重提交等操作</p>
+<p>git help帮助</p>
+<p>git init版本库初始化</p>
+<p>git init-db*同义词，等同于 git init</p>
+<p>git log显示提交日志</p>
+<p>git merge分支合并</p>
+<p>git mergetool图形化冲突解决</p>
+<p>git mv重命名</p>
+<p>git pull拉回远程版本库的提交</p>
+<p>git push推送至远程版本库</p>
+<p>git rebase分支变基</p>
+<p>git rebase–interactive交互式分支变基</p>
+<p>git reflog分支等引用变更记录管理</p>
+<p>git remote远程版本库管理</p>
+<p>git repo-config*同义词，等同于 git config</p>
+<p>git reset重置改变分支“游标”指向</p>
+<p>git rev-parse将各种引用表示法转换为哈希值等</p>
+<p>git revert反转提交</p>
+<p>git rm删除文件</p>
+<p>git show显示各种类型的对象</p>
+<p>git stage*同义词，等同于 git add</p>
+<p>git stash保存和恢复进度</p>
+<p>git status显示工作区文件状态</p>
+<p>git tag里程碑管理</p>
+<p>2、对象库操作相关命令</p>
+<p>命令简要说明</p>
+<p>git commit-tree从树对象创建提交</p>
+<p>git hash-object从标准输入或文件计算哈希值或创建对象</p>
+<p>git ls-files显示工作区和暂存区文件</p>
+<p>git ls-tree显示树对象包含的文件</p>
+<p>git mktag读取标准输入创建一个里程碑对象</p>
+<p>git mktree读取标准输入创建一个树对象</p>
+<p>git read-tree读取树对象到暂存区</p>
+<p>git update-index工作区内容注册到暂存区及暂存区管理</p>
+<p>git unpack-file创建临时文件包含指定 blob 的内容</p>
+<p>git write-tree从暂存区创建一个树对象</p>
+<p>3、引用操作相关命令</p>
+<p>命令简要说明</p>
+<p>git check-ref-format检查引用名称是否符合规范</p>
+<p>git for-each-ref引用迭代器，用于shell编程</p>
+<p>git ls-remote显示远程版本库的引用</p>
+<p>git name-rev将提交ID显示为友好名称</p>
+<p>git peek-remote*过时命令，请使用 git ls-remote</p>
+<p>git rev-list显示版本范围</p>
+<p>git show-branch显示分支列表及拓扑关系</p>
+<p>git show-ref显示本地引用</p>
+<p>git symbolic-ref显示或者设置符号引用</p>
+<p>git update-ref更新引用的指向</p>
+<p>git verify-tag校验 GPG 签名的Tag</p>
+<p>4、版本库管理相关命令</p>
+<p>命令简要说明</p>
+<p>git count-objects显示松散对象的数量和磁盘占用</p>
+<p>git filter-branch版本库重构</p>
+<p>git fsck对象库完整性检查</p>
+<p>git fsck-objects*同义词，等同于 git fsck</p>
+<p>git gc版本库存储优化</p>
+<p>git index-pack从打包文件创建对应的索引文件</p>
+<p>git lost-found*过时，请使用 git fsck –lost-found 命令</p>
+<p>git pack-objects从标准输入读入对象ID，打包到文件</p>
+<p>git pack-redundant查找多余的 pack 文件</p>
+<p>git pack-refs将引用打包到 .git&#x2F;packed-refs 文件中</p>
+<p>git prune从对象库删除过期对象</p>
+<p>git prune-packed将已经打包的松散对象删除</p>
+<p>git relink为本地版本库中相同的对象建立硬连接</p>
+<p>git repack将版本库未打包的松散对象打包</p>
+<p>git show-index读取包的索引文件，显示打包文件中的内容</p>
+<p>git unpack-objects从打包文件释放文件</p>
+<p>git verify-pack校验对象库打包文件</p>
+<p>5、数据传输相关命令</p>
+<p>命令简要说明</p>
+<p>git fetch-pack执行 git fetch 或 git pull 命令时在本地执行此命令，用于从其他版本库获取缺失的对象</p>
+<p>git receive-pack执行 git push 命令时在远程执行的命令，用于接受推送的数据</p>
+<p>git send-pack执行 git push 命令时在本地执行的命令，用于向其他版本库推送数据</p>
+<p>git upload-archive执行 git archive –remote 命令基于远程版本库创建归档时，远程版本库执行此命令传送归档</p>
+<p>git upload-pack执行 git fetch 或 git pull 命令时在远程执行此命令，将对象打包、上传</p>
+<p>6、邮件相关命令</p>
+<p>命令简要说明</p>
+<p>git imap-send将补丁通过 IMAP 发送</p>
+<p>git mailinfo从邮件导出提交说明和补丁</p>
+<p>git mailsplit将 mbox 或 Maildir 格式邮箱中邮件逐一提取为文件</p>
+<p>git request-pull创建包含提交间差异和执行PULL操作地址的信息</p>
+<p>git send-email发送邮件</p>
+<p>7、协议相关命令</p>
+<p>命令简要说明</p>
+<p>git daemon实现Git协议</p>
+<p>git http-backend实现HTTP协议的CGI程序，支持智能HTTP协议</p>
+<p>git instaweb即时启动浏览器通过 gitweb 浏览当前版本库</p>
+<p>git shell受限制的shell，提供仅执行Git命令的SSH访问</p>
+<p>git update-server-info更新哑协议需要的辅助文件</p>
+<p>git http-fetch通过HTTP协议获取版本库</p>
+<p>git http-push通过HTTP&#x2F;DAV协议推送</p>
+<p>git remote-ext由Git命令调用，通过外部命令提供扩展协议支持</p>
+<p>git remote-fd由Git命令调用，使用文件描述符作为协议接口</p>
+<p>git remote-ftp由Git命令调用，提供对FTP协议的支持</p>
+<p>git remote-ftps由Git命令调用，提供对FTPS协议的支持</p>
+<p>git remote-http由Git命令调用，提供对HTTP协议的支持</p>
+<p>git remote-https由Git命令调用，提供对HTTPS协议的支持</p>
+<p>git remote-testgit协议扩展示例脚本</p>
+<p>8、版本库转换和交互相关命令</p>
+<p>命令简要说明</p>
+<p>git archimport导入Arch版本库到Git</p>
+<p>git bundle提交打包和解包，以便在不同版本库间传递</p>
+<p>git cvsexportcommit将Git的一个提交作为一个CVS检出</p>
+<p>git cvsimport导入CVS版本库到Git。或者使用 cvs2git</p>
+<p>git cvsserverGit的CVS协议模拟器，可供CVS命令访问Git版本库</p>
+<p>git fast-export将提交导出为 git-fast-import 格式</p>
+<p>git fast-import其他版本库迁移至Git的通用工具</p>
+<p>git svnGit 作为前端操作 Subversion</p>
+<p>9、合并相关的辅助命令</p>
+<p>命令简要说明</p>
+<p>git merge-base供其他脚本调用，找到两个或多个提交最近的共同祖先</p>
+<p>git merge-file针对文件的两个不同版本执行三向文件合并</p>
+<p>git merge-index对index中的冲突文件调用指定的冲突解决工具</p>
+<p>git merge-octopus合并两个以上分支。参见 git merge 的octopus合并策略</p>
+<p>git merge-one-file由 git merge-index 调用的标准辅助程序</p>
+<p>git merge-ours合并使用本地版本，抛弃他人版本。参见 git merge 的ours合并策略</p>
+<p>git merge-recursive针对两个分支的三向合并。参见 git merge 的recursive合并策略</p>
+<p>git merge-resolve针对两个分支的三向合并。参见 git merge 的resolve合并策略</p>
+<p>git merge-subtree子树合并。参见 git merge 的 subtree 合并策略</p>
+<p>git merge-tree显式三向合并结果，不改变暂存区</p>
+<p>git fmt-merge-msg供执行合并操作的脚本调用，用于创建一个合并提交说明</p>
+<p>git rerere重用所记录的冲突解决方案</p>
+<p>10、 杂项</p>
+<p>命令简要说明</p>
+<p>git bisect–helper由 git bisect 命令调用，确认二分查找进度</p>
+<p>git check-attr显示某个文件是否设置了某个属性</p>
+<p>git checkout-index从暂存区拷贝文件至工作区</p>
+<p>git cherry查找没有合并到上游的提交</p>
+<p>git diff-files比较暂存区和工作区，相当于 git diff –raw</p>
+<p>git diff-index比较暂存区和版本库，相当于 git diff –cached –raw</p>
+<p>git diff-tree比较两个树对象，相当于 git diff –raw A B</p>
+<p>git difftool–helper由 git difftool 命令调用，默认要使用的差异比较工具</p>
+<p>git get-tar-commit-id从 git archive 创建的 tar 包中提取提交ID</p>
+<p>git gui–askpass命令 git gui 的获取用户口令输入界面</p>
+<p>git notes提交评论管理</p>
+<p>git patch-id补丁过滤行号和空白字符后生成补丁唯一ID</p>
+<p>git quiltimport将Quilt补丁列表应用到当前分支</p>
+<p>git replace提交替换</p>
+<p>git shortlog对 git log 的汇总输出，适合于产品发布说明</p>
+<p>git stripspace删除空行，供其他脚本调用</p>
+<p>git submodule子模组管理</p>
+<p>git tar-tree过时命令，请使用 git archive</p>
+<p>git var显示 Git 环境变量</p>
+<p>git web–browse启动浏览器以查看目录或文件</p>
+<p>git whatchanged显示提交历史及每次提交的改动</p>
+<p>git-mergetool–lib包含于其他脚本中，提供合并&#x2F;差异比较工具的选择和执行</p>
+<p>git-parse-remote包含于其他脚本中，提供操作远程版本库的函数</p>
+<p>git-sh-setup包含于其他脚本中，提供 shell 编程的函数库</p>
+<p>下面脚本之家小编特为大家分享一个图片版的</p>
+<p>Git 常用命令速查表。点击查看大图。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3892288-c37b3ba30a393108.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1200/format/webp" alt="img"></p>
+<p>Git命令参考手册(文本版)</p>
+<p>git init                         # 初始化本地git仓库（创建新仓库）</p>
+<p>git config –global user.name “xxx”            # 配置用户名</p>
+<p>git config –global user.email “<a href="mailto:&#x78;&#x78;&#120;&#64;&#x78;&#x78;&#120;&#46;&#x63;&#x6f;&#x6d;">&#x78;&#x78;&#120;&#64;&#x78;&#x78;&#120;&#46;&#x63;&#x6f;&#x6d;</a>“       # 配置邮件</p>
+<p>git config –global color.ui true             # git status等命令自动着色</p>
+<p>git config –global color.status auto</p>
+<p>git config –global color.diff auto</p>
+<p>git config –global color.branch auto</p>
+<p>git config –global color.interactive auto</p>
+<p>git clone git+ssh:&#x2F;&#x2F;<a href="mailto:&#x67;&#105;&#x74;&#64;&#x31;&#x39;&#50;&#46;&#49;&#x36;&#x38;&#46;&#x35;&#51;&#46;&#x31;&#x36;&#56;">&#x67;&#105;&#x74;&#64;&#x31;&#x39;&#50;&#46;&#49;&#x36;&#x38;&#46;&#x35;&#51;&#46;&#x31;&#x36;&#56;</a>&#x2F;VT.git       # clone远程仓库</p>
+<p>git status                        # 查看当前版本状态（是否修改）</p>
+<p>git add xyz                        # 添加xyz文件至index</p>
+<p>git add .                         # 增加当前子目录下所有更改过的文件至index</p>
+<p>git commit -m ‘xxx’                    # 提交</p>
+<p>git commit –amend -m ‘xxx’                # 合并上一次提交（用于反复修改）</p>
+<p>git commit -am ‘xxx’                   # 将add和commit合为一步</p>
+<p>git rm xxx                        # 删除index中的文件</p>
+<p>git rm -r *                        # 递归删除</p>
+<p>git log                          # 显示提交日志</p>
+<p>git log -1                        # 显示1行日志 -n为n行</p>
+<p>git log -5</p>
+<p>git log –stat                      # 显示提交日志及相关变动文件</p>
+<p>git log -p -m</p>
+<p>git show dfb02e6e4f2f7b573337763e5c0013802e392818     # 显示某个提交的详细内容</p>
+<p>git show dfb02                      # 可只用commitid的前几位</p>
+<p>git show HEAD                       # 显示HEAD提交日志</p>
+<p>git show HEAD^                      # 显示HEAD的父（上一个版本）的提交日志 ^^为上两个版本 ^5为上5个版本</p>
+<p>git tag                          # 显示已存在的tag</p>
+<p>git tag -a v2.0 -m ‘xxx’                 # 增加v2.0的tag</p>
+<p>git show v2.0                       # 显示v2.0的日志及详细内容</p>
+<p>git log v2.0                       # 显示v2.0的日志</p>
+<p>git diff                         # 显示所有未添加至index的变更</p>
+<p>git diff –cached                     # 显示所有已添加index但还未commit的变更</p>
+<p>git diff HEAD^                      # 比较与上一个版本的差异</p>
+<p>git diff HEAD – .&#x2F;lib                  # 比较与HEAD版本lib目录的差异</p>
+<p>git diff origin&#x2F;master..master              # 比较远程分支master上有本地分支master上没有的</p>
+<p>git diff origin&#x2F;master..master –stat           # 只显示差异的文件，不显示具体内容</p>
+<p>git remote add origin git+ssh:&#x2F;&#x2F;<a href="mailto:&#103;&#105;&#x74;&#64;&#x31;&#57;&#50;&#46;&#49;&#x36;&#56;&#x2e;&#53;&#x33;&#46;&#x31;&#x36;&#56;">&#103;&#105;&#x74;&#64;&#x31;&#57;&#50;&#46;&#49;&#x36;&#56;&#x2e;&#53;&#x33;&#46;&#x31;&#x36;&#56;</a>&#x2F;VT.git # 增加远程定义（用于push&#x2F;pull&#x2F;fetch）</p>
+<p>git branch                        # 显示本地分支</p>
+<p>git branch –contains 50089                # 显示包含提交50089的分支</p>
+<p>git branch -a                       # 显示所有分支</p>
+<p>git branch -r                       # 显示所有原创分支</p>
+<p>git branch –merged                    # 显示所有已合并到当前分支的分支</p>
+<p>git branch –no-merged                  # 显示所有未合并到当前分支的分支</p>
+<p>git branch -m master master_copy             # 本地分支改名</p>
+<p>git checkout -b master_copy                # 从当前分支创建新分支master_copy并检出</p>
+<p>git checkout -b master master_copy            # 上面的完整版</p>
+<p>git checkout features&#x2F;performance             # 检出已存在的features&#x2F;performance分支</p>
+<p>git checkout –track hotfixes&#x2F;BJVEP933          # 检出远程分支hotfixes&#x2F;BJVEP933并创建本地跟踪分支</p>
+<p>git checkout v2.0                     # 检出版本v2.0</p>
+<p>git checkout -b devel origin&#x2F;develop           # 从远程分支develop创建新本地分支devel并检出</p>
+<p>git checkout – README                  # 检出head版本的README文件（可用于修改错误回退）</p>
+<p>git merge origin&#x2F;master                  # 合并远程master分支至当前分支</p>
+<p>git cherry-pick ff44785404a8e               # 合并提交ff44785404a8e的修改</p>
+<p>git push origin master                  # 将当前分支push到远程master分支</p>
+<p>git push origin :hotfixes&#x2F;BJVEP933            # 删除远程仓库的hotfixes&#x2F;BJVEP933分支</p>
+<p>git push –tags                      # 把所有tag推送到远程仓库</p>
+<p>git fetch                         # 获取所有远程分支（不更新本地分支，另需merge）</p>
+<p>git fetch –prune                     # 获取所有原创分支并清除服务器上已删掉的分支</p>
+<p>git pull origin master                  # 获取远程分支master并merge到当前分支</p>
+<p>git mv README README2                   # 重命名文件README为README2</p>
+<p>git reset –hard HEAD                   # 将当前版本重置为HEAD（通常用于merge失败回退）</p>
+<p>git rebase</p>
+<p>git branch -d hotfixes&#x2F;BJVEP933              # 删除分支hotfixes&#x2F;BJVEP933（本分支修改已合并到其他分支）</p>
+<p>git branch -D hotfixes&#x2F;BJVEP933              # 强制删除分支hotfixes&#x2F;BJVEP933</p>
+<p>git ls-files                       # 列出git index包含的文件</p>
+<p>git show-branch                      # 图示当前分支历史</p>
+<p>git show-branch –all                   # 图示所有分支历史</p>
+<p>git whatchanged                      # 显示提交历史对应的文件修改</p>
+<p>git revert dfb02e6e4f2f7b573337763e5c0013802e392818    # 撤销提交dfb02e6e4f2f7b573337763e5c0013802e392818</p>
+<p>git ls-tree HEAD                     # 内部命令：显示某个git对象</p>
+<p>git rev-parse v2.0                    # 内部命令：显示某个ref对于的SHA1 HASH</p>
+<p>git reflog                        # 显示所有提交，包括孤立节点</p>
+<p>git show HEAD@{5}</p>
+<p>git show master@{yesterday}                # 显示master分支昨天的状态</p>
+<p>git log –pretty&#x3D;format:’%h %s’ –graph          # 图示提交日志</p>
+<p>git show HEAD~3</p>
+<p>git show -s –pretty&#x3D;raw 2be7fcb476</p>
+<p>git stash                         # 暂存当前修改，将所有至为HEAD状态</p>
+<p>git stash list                      # 查看所有暂存</p>
+<p>git stash show -p stash@{0}                # 参考第一次暂存</p>
+<p>git stash apply stash@{0}                 # 应用第一次暂存</p>
+<p>git grep “delete from”                  # 文件中搜索文本“delete from”</p>
+<p>git grep -e ‘#define’ –and -e SORT_DIRENT</p>
+<p>git gc</p>
+<p>git fsck</p>
+<p><a target="_blank" rel="noopener" href="http://gitref.org/index.html">Git</a>是一个很强大的分布式版本控制系统。它不但适用于管理大型开源软件的源代码，管理私人的文档和源代码也有很多优势。</p>
+<p>Git常用操作命令：</p>
+<ol>
+<li>远程仓库相关命令</li>
+</ol>
+<p>检出仓库：$ git clone git:&#x2F;&#x2F;github.com&#x2F;jquery&#x2F;jquery.git</p>
+<p>查看远程仓库：$ git remote -v</p>
+<p>添加远程仓库：$ git remote add [name] [url]</p>
+<p>删除远程仓库：$ git remote rm [name]</p>
+<p>修改远程仓库：$ git remote set-url –push [name] [newUrl]</p>
+<p>拉取远程仓库：$ git pull [remoteName] [localBranchName]</p>
+<p>推送远程仓库：$ git push [remoteName] [localBranchName]</p>
+<p>*如果想把本地的某个分支test提交到远程仓库，并作为远程仓库的master分支，或者作为另外一个名叫test的分支，如下：</p>
+<p>$git push origin test:master     &#x2F;&#x2F; 提交本地test分支作为远程的master分支</p>
+<p>$git push origin test:test        &#x2F;&#x2F; 提交本地test分支作为远程的test分支</p>
+<p>2）分支(branch)操作相关命令</p>
+<p>查看本地分支：$ git branch</p>
+<p>查看远程分支：$ git branch -r</p>
+<p>创建本地分支：$ git branch [name] —-注意新分支创建后不会自动切换为当前分支</p>
+<p>切换分支：$ git checkout [name]</p>
+<p>创建新分支并立即切换到新分支：$ git checkout -b [name]</p>
+<p>删除分支：$ git branch -d [name] —- -d选项只能删除已经参与了合并的分支，对于未有合并的分支是无法删除的。如果想强制删除一个分支，可以使用-D选项</p>
+<p>合并分支：$ git merge [name] —-将名称为[name]的分支与当前分支合并</p>
+<p>创建远程分支(本地分支push到远程)：$ git push origin [name]</p>
+<p>删除远程分支：$ git push origin :heads&#x2F;[name] 或 $ gitpush origin :[name] </p>
+<p>*创建空的分支：(执行命令之前记得先提交你当前分支的修改，否则会被强制删干净没得后悔)</p>
+<p>$git symbolic-ref HEAD refs&#x2F;heads&#x2F;[name]</p>
+<p>$rm .git&#x2F;index</p>
+<p>$git clean -fdx</p>
+<p>3）版本(tag)操作相关命令</p>
+<p>查看版本：$ git tag</p>
+<p>创建版本：$ git tag [name]</p>
+<p>删除版本：$ git tag -d [name]</p>
+<p>查看远程版本：$ git tag -r</p>
+<p>创建远程版本(本地版本push到远程)：$ git push origin [name]</p>
+<p>删除远程版本：$ git push origin :refs&#x2F;tags&#x2F;[name]</p>
+<p>合并远程仓库的tag到本地：$ git pull origin –tags</p>
+<p>上传本地tag到远程仓库：$ git push origin –tags</p>
+<p>创建带注释的tag：$ git tag -a [name] -m ‘yourMessage’</p>
+<ol start="4">
+<li>子模块(submodule)相关操作命令</li>
+</ol>
+<p>添加子模块：$ git submodule add [url] [path]</p>
+<p>  如：$git submodule add git:&#x2F;&#x2F;github.com&#x2F;soberh&#x2F;ui-libs.git src&#x2F;main&#x2F;webapp&#x2F;ui-libs</p>
+<p>初始化子模块：$ git submodule init  —-只在首次检出仓库时运行一次就行</p>
+<p>更新子模块：$ git submodule update —-每次更新或切换分支后都需要运行一下</p>
+<p>删除子模块：（分4步走哦）</p>
+<ol>
+<li><p>$ git rm –cached [path]</p>
+</li>
+<li><p>编辑“.gitmodules”文件，将子模块的相关配置节点删除掉</p>
+</li>
+<li><p>编辑“ .git&#x2F;config”文件，将子模块的相关配置节点删除掉</p>
+</li>
+<li><p>手动删除子模块残留的目录</p>
+</li>
+</ol>
+<p>5）忽略一些文件、文件夹不提交</p>
+<p>在仓库根目录下创建名称为“.gitignore”的文件，写入不需要的文件夹名或文件，每个元素占一行即可，如</p>
+<p>target</p>
+<p>bin</p>
+<p>*.db</p>
+<p>&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</p>
+<p>Git 常用命令</p>
+<p>git branch 查看本地所有分支</p>
+<p>git status 查看当前状态</p>
+<p>git commit 提交</p>
+<p>git branch -a 查看所有的分支</p>
+<p>git branch -r 查看本地所有分支</p>
+<p>git commit -am “init” 提交并且加注释</p>
+<p>git remote add origin <a href="mailto:&#103;&#x69;&#116;&#x40;&#x31;&#57;&#50;&#46;&#49;&#54;&#56;&#46;&#49;&#46;&#x31;&#x31;&#x39;">&#103;&#x69;&#116;&#x40;&#x31;&#57;&#50;&#46;&#49;&#54;&#56;&#46;&#49;&#46;&#x31;&#x31;&#x39;</a>:ndshow</p>
+<p>git push origin master 将文件给推到服务器上</p>
+<p>git remote show origin 显示远程库origin里的资源</p>
+<p>git push origin master:develop</p>
+<p>git push origin master:hb-dev 将本地库与服务器上的库进行关联</p>
+<p>git checkout –track origin&#x2F;dev 切换到远程dev分支</p>
+<p>git branch -D master develop 删除本地库develop</p>
+<p>git checkout -b dev 建立一个新的本地分支dev</p>
+<p>git merge origin&#x2F;dev 将分支dev与当前分支进行合并</p>
+<p>git checkout dev 切换到本地dev分支</p>
+<p>git remote show 查看远程库</p>
+<p>git add .</p>
+<p>git rm 文件名(包括路径) 从git中删除指定文件</p>
+<p>git clone git:&#x2F;&#x2F;github.com&#x2F;schacon&#x2F;grit.git 从服务器上将代码给拉下来</p>
+<p>git config –list 看所有用户</p>
+<p>git ls-files 看已经被提交的</p>
+<p>git rm [file name] 删除一个文件</p>
+<p>git commit -a 提交当前repos的所有的改变</p>
+<p>git add [file name] 添加一个文件到git index</p>
+<p>git commit -v 当你用－v参数的时候可以看commit的差异</p>
+<p>git commit -m “This is the message describing the commit” 添加commit信息</p>
+<p>git commit -a -a是代表add，把所有的change加到git index里然后再commit</p>
+<p>git commit -a -v 一般提交命令</p>
+<p>git log 看你commit的日志</p>
+<p>git diff 查看尚未暂存的更新</p>
+<p>git rm a.a 移除文件(从暂存区和工作区中删除)</p>
+<p>git rm –cached a.a 移除文件(只从暂存区中删除)</p>
+<p>git commit -m “remove” 移除文件(从Git中删除)</p>
+<p>git rm -f a.a 强行移除修改后文件(从暂存区和工作区中删除)</p>
+<p>git diff –cached 或 $ git diff –staged 查看尚未提交的更新</p>
+<p>git stash push 将文件给push到一个临时空间中</p>
+<p>git stash pop 将文件从临时空间pop下来</p>
+<p>-——————————————————–</p>
+<p>git remote add origin <a href="mailto:&#103;&#105;&#x74;&#64;&#103;&#x69;&#116;&#104;&#117;&#98;&#46;&#99;&#111;&#109;">&#103;&#105;&#x74;&#64;&#103;&#x69;&#116;&#104;&#117;&#98;&#46;&#99;&#111;&#109;</a>:username&#x2F;Hello-World.git</p>
+<p>git push origin master 将本地项目给提交到服务器中</p>
+<p>-———————————————————-</p>
+<p>git pull 本地与服务器端同步</p>
+<p>-—————————————————————-</p>
+<p>git push (远程仓库名) (分支名) 将本地分支推送到服务器上去。</p>
+<p>git push origin serverfix:awesomebranch</p>
+<p>-—————————————————————–</p>
+<p>git fetch 相当于是从远程获取最新版本到本地，不会自动merge</p>
+<p>git commit -a -m “log_message” (-a是提交所有改动，-m是加入log信息) 本地修改同步至服务器端 ：</p>
+<p>git branch branch_0.1 master 从主分支master创建branch_0.1分支</p>
+<p>git branch -m branch_0.1 branch_1.0 将branch_0.1重命名为branch_1.0</p>
+<p>git checkout branch_1.0&#x2F;master 切换到branch_1.0&#x2F;master分支</p>
+<p>du -hs</p>
+<p>-———————————————————-</p>
+<p>mkdir WebApp</p>
+<p>cd WebApp</p>
+<p>git init</p>
+<p>touch README</p>
+<p>git add README</p>
+<p>git commit -m ‘first commit’</p>
+<p>git remote add origin <a href="mailto:&#103;&#105;&#x74;&#x40;&#103;&#105;&#116;&#x68;&#x75;&#x62;&#46;&#x63;&#x6f;&#x6d;">&#103;&#105;&#x74;&#x40;&#103;&#105;&#116;&#x68;&#x75;&#x62;&#46;&#x63;&#x6f;&#x6d;</a>:daixu&#x2F;WebApp.git</p>
+<p>git push -u origin master</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2020/02/21/%E6%95%99%E7%A8%8B-GIT%E6%95%99%E7%A8%8B-GIT%E8%BF%9E%E6%8E%A5%E5%92%8C%E6%8F%90%E4%BA%A4/" rel="next" title="GIT连接与提交">
+      GIT连接与提交 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="CS"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">CS</p>
+  <div class="site-description" itemprop="description">选择有时候比努力更重要</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CS</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
