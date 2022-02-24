@@ -197,7 +197,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1><span id="html表单元素">HTML表单元素</span></h1><h2><span id="文本框">文本框</span></h2><p> <code>&lt;input type=&quot;text&quot;&gt;</code></p>
+        <h1 id="HTML表单元素"><a href="#HTML表单元素" class="headerlink" title="HTML表单元素"></a>HTML表单元素</h1><h2 id="文本框"><a href="#文本框" class="headerlink" title="文本框"></a>文本框</h2><p> <code>&lt;input type=&quot;text&quot;&gt;</code></p>
 <p> 即表示文本框,并且只能够输入一行</p>
 <p>如果要输入多行,使用文本域</p>
 <p>注： <code>&lt;input&gt;</code> 标签很特别，一般是不需要写成<code>&lt;input /&gt;</code>或者<code>&lt;input&gt;&lt;/input&gt; </code>这样的。<br>并且<code>&lt;input&gt;</code> 这样的写法也是满足标准的 </p>
@@ -207,8 +207,8 @@
 <p> 使用属性value </p>
 <p> <strong>有背景文字的文本框</strong> </p>
 <p> 使用属性placeholder<br>placeholder是一个html5的属性，对于大多数的已经支持html5的浏览器来说，是可以看到效果的，但是对于老的不支持html5的浏览器，比如ie8，就看不到效果 </p>
-<h2><span id="密码框">密码框</span></h2><p> <code>&lt;input type=&quot;password&quot;&gt; </code>即表示密码框 , 输入的数据会自动显示为星号 </p>
-<h2><span id="表单">表单</span></h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`&lt;form&gt;`用于向服务器提交数据，比如账号密码</span><br></pre></td></tr></table></figure>
+<h2 id="密码框"><a href="#密码框" class="headerlink" title="密码框"></a>密码框</h2><p> <code>&lt;input type=&quot;password&quot;&gt; </code>即表示密码框 , 输入的数据会自动显示为星号 </p>
+<h2 id="表单"><a href="#表单" class="headerlink" title="表单"></a>表单</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`&lt;form&gt;`用于向服务器提交数据，比如账号密码</span><br></pre></td></tr></table></figure>
 
 <p> <strong>action&#x3D;”&#x2F;study&#x2F;login.jsp”</strong> </p>
 <p>表示把账号和密码提交到login.jsp这个页面去 </p>
@@ -219,7 +219,7 @@
 <p> <strong>method&#x3D;”post”</strong> </p>
 <p> 使用method&#x3D;”post” 也可以提交数据,<strong>post</strong>不会在地址栏显示提交的参数,如果要提交二进制数据，比如上传文件，必须采用post方式 </p>
 <p> <strong>get和post的区别</strong><br>get<br>是form默认的提交方式,如果通过一个超链访问某个地址，是get方式,如果在地址栏直接输入某个地址，是get方式<br>提交数据会在浏览器显示出来,<strong>不可以</strong>用于提交二进制数据，比如上传文件<br>post<br>必须在form上通过 method&#x3D;”post” 显示指定,提交数据<strong>不会</strong>在浏览器显示出来<br>可以用于提交二进制数据，比如上传文件 </p>
-<h2><span id="单选框">单选框</span></h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=&quot;radio&quot; &gt; 表示单选框 </span><br></pre></td></tr></table></figure>
+<h2 id="单选框"><a href="#单选框" class="headerlink" title="单选框"></a>单选框</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=&quot;radio&quot; &gt; 表示单选框 </span><br></pre></td></tr></table></figure>
 
 <p> 两个单选，都可以同时选中。 为了达到，同一时间，只能选中其一的效果，需要使用分组</p>
 <p> <strong>默认选中</strong> </p>
@@ -227,9 +227,9 @@
 
 <p> <strong>分组</strong> </p>
 <p> 分组即，多个单选框，都在一个分组里，同一时间，只能选中一个单选框<br>设置name属性相同即可 </p>
-<h2><span id="复选框">复选框</span></h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=&quot;checkbox&quot;&gt; 即表示复选框</span><br></pre></td></tr></table></figure>
+<h2 id="复选框"><a href="#复选框" class="headerlink" title="复选框"></a>复选框</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=&quot;checkbox&quot;&gt; 即表示复选框</span><br></pre></td></tr></table></figure>
 
-<h2><span id="下拉列表">下拉列表</span></h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;select&gt; 即下拉列表</span><br><span class="line">需要配合&lt;option&gt;使用</span><br></pre></td></tr></table></figure>
+<h2 id="下拉列表"><a href="#下拉列表" class="headerlink" title="下拉列表"></a>下拉列表</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;select&gt; 即下拉列表</span><br><span class="line">需要配合&lt;option&gt;使用</span><br></pre></td></tr></table></figure>
 
 <p> <strong>设置高度</strong> </p>
 <p> 使用属性size </p>
@@ -239,23 +239,23 @@
 <p>  使用ctrl或者shift进行多选 </p>
 <p> <strong>默认选中</strong> </p>
 <p> 对option元素设置selected&#x3D;”selected” 属性 </p>
-<h2><span id="多行文本框-文本域">多行文本框-文本域</span></h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;textarea&gt; 即文本域</span><br><span class="line">与文本框不同的是，文本域可以有多行，并且可以有滚动条</span><br></pre></td></tr></table></figure>
+<h2 id="多行文本框-文本域"><a href="#多行文本框-文本域" class="headerlink" title="多行文本框-文本域"></a>多行文本框-文本域</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;textarea&gt; 即文本域</span><br><span class="line">与文本框不同的是，文本域可以有多行，并且可以有滚动条</span><br></pre></td></tr></table></figure>
 
 <p> <strong>设置宽度和行数</strong> </p>
 <p> 使用属性cols和rows </p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;textarea cols=&quot;30&quot; rows=&quot;8&quot;&gt;123456789012345678901234567890</span><br><span class="line">1234567890</span><br><span class="line">1234567890</span><br><span class="line">1234567890</span><br><span class="line">1234567890</span><br><span class="line">1234567890</span><br><span class="line">1234567890</span><br><span class="line">1234567890&lt;/textarea&gt;</span><br></pre></td></tr></table></figure>
 
-<h2><span id="普通按钮">普通按钮</span></h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=&quot;button&quot;&gt; 即普通按钮</span><br></pre></td></tr></table></figure>
+<h2 id="普通按钮"><a href="#普通按钮" class="headerlink" title="普通按钮"></a>普通按钮</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=&quot;button&quot;&gt; 即普通按钮</span><br></pre></td></tr></table></figure>
 
 <p> 普通按钮不具备提交form的效果 </p>
-<h2><span id="提交按钮">提交按钮</span></h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=&quot;submit&quot;&gt; 即为提交按钮</span><br></pre></td></tr></table></figure>
+<h2 id="提交按钮"><a href="#提交按钮" class="headerlink" title="提交按钮"></a>提交按钮</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=&quot;submit&quot;&gt; 即为提交按钮</span><br></pre></td></tr></table></figure>
 
 
 <p>用于提交form，把数据提交到服务端 </p>
-<h2><span id="重置按钮">重置按钮</span></h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=&quot;reset&quot;&gt; 重置按钮 可以把输入框的改动复原 </span><br></pre></td></tr></table></figure>
+<h2 id="重置按钮"><a href="#重置按钮" class="headerlink" title="重置按钮"></a>重置按钮</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=&quot;reset&quot;&gt; 重置按钮 可以把输入框的改动复原 </span><br></pre></td></tr></table></figure>
 
-<h2><span id="图片提交">图片提交</span></h2><p> <code>&lt;input type=&quot;image&quot; &gt; </code>即使用图像作为按钮进行form的提交 </p>
-<h2><span id="按钮标签">按钮标签</span></h2><p><code>&lt;button&gt;&lt;/button&gt;</code>即按钮标签<br>与<code>&lt;input type=&quot;button&quot;&gt;</code>不同的是，<code>&lt;button&gt;</code>标签功能更为丰富</p>
+<h2 id="图片提交"><a href="#图片提交" class="headerlink" title="图片提交"></a>图片提交</h2><p> <code>&lt;input type=&quot;image&quot; &gt; </code>即使用图像作为按钮进行form的提交 </p>
+<h2 id="按钮标签"><a href="#按钮标签" class="headerlink" title="按钮标签"></a>按钮标签</h2><p><code>&lt;button&gt;&lt;/button&gt;</code>即按钮标签<br>与<code>&lt;input type=&quot;button&quot;&gt;</code>不同的是，<code>&lt;button&gt;</code>标签功能更为丰富</p>
 <p>按钮标签里的内容可以是文字也可以是图像</p>
 <p>如果button的type&#x3D;“submit” ，那么它就具备提交form的功能</p>
 
@@ -276,7 +276,10 @@
     <a href="/2022/02/23/%E6%95%99%E7%A8%8B-HTML%E6%95%99%E7%A8%8B-2022-02-23-HTML%E5%9F%BA%E6%9C%AC%E5%85%83%E7%B4%A0/" rel="prev" title="HTML基本元素">
       <i class="fa fa-chevron-left"></i> HTML基本元素
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2022/02/24/HEXO%E8%B8%A9%E5%9D%91/" rel="next" title="HEXO踩坑">
+      HEXO踩坑 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -335,7 +338,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">HTML表单元素</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.1.</span> <span class="nav-text">文本框</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.2.</span> <span class="nav-text">密码框</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.3.</span> <span class="nav-text">表单</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.4.</span> <span class="nav-text">单选框</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.5.</span> <span class="nav-text">复选框</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.6.</span> <span class="nav-text">下拉列表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.7.</span> <span class="nav-text">多行文本框-文本域</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.8.</span> <span class="nav-text">普通按钮</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.9.</span> <span class="nav-text">提交按钮</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.10.</span> <span class="nav-text">重置按钮</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.11.</span> <span class="nav-text">图片提交</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.12.</span> <span class="nav-text">按钮标签</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#HTML%E8%A1%A8%E5%8D%95%E5%85%83%E7%B4%A0"><span class="nav-number">1.</span> <span class="nav-text">HTML表单元素</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E6%9C%AC%E6%A1%86"><span class="nav-number">1.1.</span> <span class="nav-text">文本框</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%86%E7%A0%81%E6%A1%86"><span class="nav-number">1.2.</span> <span class="nav-text">密码框</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A1%A8%E5%8D%95"><span class="nav-number">1.3.</span> <span class="nav-text">表单</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%95%E9%80%89%E6%A1%86"><span class="nav-number">1.4.</span> <span class="nav-text">单选框</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%8D%E9%80%89%E6%A1%86"><span class="nav-number">1.5.</span> <span class="nav-text">复选框</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8B%E6%8B%89%E5%88%97%E8%A1%A8"><span class="nav-number">1.6.</span> <span class="nav-text">下拉列表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E8%A1%8C%E6%96%87%E6%9C%AC%E6%A1%86-%E6%96%87%E6%9C%AC%E5%9F%9F"><span class="nav-number">1.7.</span> <span class="nav-text">多行文本框-文本域</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%99%AE%E9%80%9A%E6%8C%89%E9%92%AE"><span class="nav-number">1.8.</span> <span class="nav-text">普通按钮</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8F%90%E4%BA%A4%E6%8C%89%E9%92%AE"><span class="nav-number">1.9.</span> <span class="nav-text">提交按钮</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%87%8D%E7%BD%AE%E6%8C%89%E9%92%AE"><span class="nav-number">1.10.</span> <span class="nav-text">重置按钮</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E7%89%87%E6%8F%90%E4%BA%A4"><span class="nav-number">1.11.</span> <span class="nav-text">图片提交</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8C%89%E9%92%AE%E6%A0%87%E7%AD%BE"><span class="nav-number">1.12.</span> <span class="nav-text">按钮标签</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -350,14 +353,14 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-count">8</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
   </nav>
