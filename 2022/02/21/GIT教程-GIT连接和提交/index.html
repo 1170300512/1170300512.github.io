@@ -20,19 +20,19 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="简介  git有四个工作区域，分别是：工作目录（Workspace）、暂存区（Index&#x2F;Stage）、本地仓库（Repository）、远程仓库（Remote） 在已经下载GIT并安装和创建仓库的前提下 绑定GITHUB 查看本机是否安装 SSH,出现相关命令则安装成功 1ssh  指定 RSA 算法生成密钥，然后敲四次回车键，之后就就会生成两个文件，分别为秘钥 id_rsa 和公钥 id_rs">
-<meta property="og:type" content="website">
-<meta property="og:title" content="分类">
-<meta property="og:url" content="http://example.com/categories/GIT%E8%BF%9E%E6%8E%A5%E5%92%8C%E6%8F%90%E4%BA%A4.html">
+  <meta name="description" content="简介  git有四个工作区域，分别是：工作目录（Workspace）、暂存区（Index&#x2F;Stage）、本地仓库（Repository）、远程仓库（Remote） 在已经下载GIT并安装和创建仓库的前提下">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GIT连接与提交">
+<meta property="og:url" content="http://example.com/2022/02/21/GIT%E6%95%99%E7%A8%8B-GIT%E8%BF%9E%E6%8E%A5%E5%92%8C%E6%8F%90%E4%BA%A4/index.html">
 <meta property="og:site_name" content="CS的个人小站">
-<meta property="og:description" content="简介  git有四个工作区域，分别是：工作目录（Workspace）、暂存区（Index&#x2F;Stage）、本地仓库（Repository）、远程仓库（Remote） 在已经下载GIT并安装和创建仓库的前提下 绑定GITHUB 查看本机是否安装 SSH,出现相关命令则安装成功 1ssh  指定 RSA 算法生成密钥，然后敲四次回车键，之后就就会生成两个文件，分别为秘钥 id_rsa 和公钥 id_rs">
+<meta property="og:description" content="简介  git有四个工作区域，分别是：工作目录（Workspace）、暂存区（Index&#x2F;Stage）、本地仓库（Repository）、远程仓库（Remote） 在已经下载GIT并安装和创建仓库的前提下">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-02-21T07:27:01.000Z">
-<meta property="article:modified_time" content="2022-02-21T07:55:59.832Z">
+<meta property="article:published_time" content="2022-02-20T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-02-25T06:19:51.190Z">
 <meta property="article:author" content="CS">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/categories/GIT%E8%BF%9E%E6%8E%A5%E5%92%8C%E6%8F%90%E4%BA%A4">
+<link rel="canonical" href="http://example.com/2022/02/21/GIT%E6%95%99%E7%A8%8B-GIT%E8%BF%9E%E6%8E%A5%E5%92%8C%E6%8F%90%E4%BA%A4/">
 
 
 <script id="page-configurations">
@@ -40,13 +40,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>分类 | CS的个人小站
-</title>
+  <title>GIT连接与提交 | CS的个人小站</title>
   
 
 
@@ -143,33 +142,68 @@
       <div class="main-inner">
         <div class="content-wrap">
           
-  
-  
 
-          <div class="content page posts-expand">
+          <div class="content post posts-expand">
             
 
     
-    
-    
-    <div class="post-block" lang="zh-CN">
-      <header class="post-header">
-
-<h1 class="post-title" itemprop="name headline">分类
-</h1>
-
-<div class="post-meta">
   
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/02/21/GIT%E6%95%99%E7%A8%8B-GIT%E8%BF%9E%E6%8E%A5%E5%92%8C%E6%8F%90%E4%BA%A4/">
 
-</div>
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="CS">
+      <meta itemprop="description" content="选择有时候比努力更重要">
+    </span>
 
-</header>
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CS的个人小站">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          GIT连接与提交
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-02-21 00:00:00" itemprop="dateCreated datePublished" datetime="2022-02-21T00:00:00+08:00">2022-02-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-02-25 14:19:51" itemprop="dateModified" datetime="2022-02-25T14:19:51+08:00">2022-02-25</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/GIT%E6%95%99%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">GIT教程</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-      
-      
-      <div class="post-body">
-          <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>  <code>git</code>有四个工作区域，分别是：工作目录（<code>Workspace</code>）、暂存区（<code>Index/Stage</code>）、本地仓库（<code>Repository</code>）、远程仓库（<code>Remote</code>）</p>
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>  <code>git</code>有四个工作区域，分别是：工作目录（<code>Workspace</code>）、暂存区（<code>Index/Stage</code>）、本地仓库（<code>Repository</code>）、远程仓库（<code>Remote</code>）</p>
 <p>在已经下载GIT并安装和创建仓库的前提下</p>
 <h5 id="绑定GITHUB"><a href="#绑定GITHUB" class="headerlink" title="绑定GITHUB"></a>绑定GITHUB</h5><ol>
 <li><p>查看本机是否安装 SSH,出现相关命令则安装成功</p>
@@ -232,16 +266,35 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br><span class="line">git remote add origin https://github.com/1170300512/1170300512.github.io.git</span><br><span class="line">git pull origin master</span><br></pre></td></tr></table></figure></li>
 </ol>
 
-      </div>
-      
-      
-      
     </div>
-    
 
     
     
     
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/02/21/GIT%E6%95%99%E7%A8%8B-GIT%E5%88%86%E6%94%AF%E6%93%8D%E4%BD%9C/" rel="prev" title="GIT分支操作">
+      <i class="fa fa-chevron-left"></i> GIT分支操作
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/02/21/C-%E6%95%99%E7%A8%8B-C-%E5%AD%97%E7%AC%A6%E4%B8%B2/" rel="next" title="C++字符串">
+      C++字符串 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
 
 
           </div>
